@@ -12,5 +12,7 @@
 </script>
 
 <style scoped>
-
+  .container {
+    background: #222;
+  }
 </style>

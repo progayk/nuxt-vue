@@ -42,7 +42,7 @@ Let's take a look at what's creating this initial view of our application at thi
 
 Let's create a new page and set up some routing between them. In `pages/index.vue`, dump the content that's already there, and replace it.
 
-
+```html
 <template>
   <div class="container">
     <h1>Welcome!</h1>
@@ -56,19 +56,138 @@ Let's create a new page and set up some routing between them. In `pages/index.vu
   padding: 60px;
 }
 </style>
-
+```
 
 Then let's create another page in the pages directory, we'll call it `product.vue` and put this content inside of it:
 
-
+```html
 <template>
   <div class="container">
     <h1>This is the product page</h1>
     <p><nuxt-link to="/">Home page</nuxt-link></p>
   </div>
 </template>
+```
+
 
 
 You might have noticed in here, there's a special little element: `<nuxt-link to="/">`. This tag can be used like an a tag, where it wraps around a bit of content, and it will set up an internal routing link between our pages. We'll use `to="/page-title-here"` instead of an href.
 
+## Creating Page Transitions
+We already have a really cool progress bar that runs across the top of the screen as we’re routing and makes the whole thing feel very zippy. (That’s a technical term). While I like it very much, it won’t really fit the direction we’re headed in, so let’s get rid of it for now.
 
+We're going to go into our `nuxt.config.js` file and change the lines:
+
+```javascript
+/*
+** Customize the progress-bar color
+*/
+loading: { color: '#3B8070' },
+```
+to
+
+```javascript
+loading: false,
+```
+
+You'll also notice a few other things in this nuxt.config.js file. You'll see our meta and head tags as well as the content that will be rendered inside of them. That's because we won't have a traditional `index.html` file as we do in our normal CLI build, Nuxt.js is going to parse and build our `index.vue` file together with these tags and then render the content for us, on the server. If you need to add CSS files, fonts, or the like, we would use this Nuxt.js config file to do so.
+
+Create page transitions. In order to understand what’s happening on the page that we’re plugging into, we need to review how the transition component in Vue works. I've written [an article all about this here](https://css-tricks.com/intro-to-vue-5-animations/), so if you'd like deeper knowledge on the subject, you can check that out. But what you really need to know is this: under the hood, Nuxt.js will plug into the functionality of Vue's transition component, and gives us some defaults and hooks to work with:
+
+![alt text](https://res.cloudinary.com/css-tricks/image/fetch/q_auto,f_auto/https://cdn.css-tricks.com/wp-content/uploads/2017/01/transition.png "vue transition")
+
+You can see here that we have a hook for what we want to happen **right before** the animation starts `enter`, **during** the animation/transition `enter-active`, and when it **finishes**. We have these same hooks for when something is leaving, prepended with `leave` instead. We can make simple transitions that just interpolate between states, or we could plug a full CSS or JavaScript animation into them.
+
+Usually in a Vue application, we would wrap a component or element in `<transition>` in order to use this slick little functionality, but Nuxt.js will provide this for us at the get-go. Our hook for the page will begin with, thankfully- page. All we have to do to create an animation between pages is add a bit of CSS that plugs into the hooks:
+
+```css
+.page-enter-active, .page-leave-active {
+  transition: all .25s ease-out;
+}
+.page-enter, .page-leave-active {
+  opacity: 0;
+  transform-origin: 50% 50%;
+}
+```
+
+I'm also going to add an extra bit of styling here so that you can see the page transitions a little easier:
+
+```css
+html, body {
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
+  background: #222;
+  color: white;
+  width: 100vw;
+  height: 100vh;
+}
+```
+Right now we're using a CSS Transition. This only gives us the ability to designate what to do in the middle of two states. We could do something a little more interesting by having an animation adjust in a way that suggests where something is coming from and going to. For that to happen, we could separate out transitions for page-enter and page-leave-active classes, but it's a little more DRY to use a CSS animation and specify where things are coming from and going to, and plug into each for `.page-enter-active`, and `.page-leave-active`:
+
+```css
+.page-enter-active {
+  animation: acrossIn .45s ease-out both;
+} 
+
+.page-leave-active {
+  animation: acrossOut .65s ease-in both;
+} 
+
+@keyframes acrossIn {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes acrossOut {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+```
+Let's also add a little bit of special styling to the product page so we can see the difference between these two pages:
+
+`<style scoped>` 
+```css
+  .container {
+    background: #222;
+  }
+```
+`</style>`
+
+Now, let's say we have a page with a totally different interaction. For this page, the movement up and down was too much, we just want a simple fade. For this case, we'd need to rename our transition hook to separate it out.
+
+Let’s create another page, we’ll call it the contact page and create it in the pages directory.
+
+```html
+<template>
+  <div class="container">
+    <h1>This is the contact page</h1>
+    <p><nuxt-link to="/">Home page</nuxt-link></p>
+  </div>
+</template>
+
+<script>
+export default {
+  transition: 'fadeOpacity'
+}
+</script>
+
+<style>
+.fadeOpacity-enter-active, .fadeOpacity-leave-active {
+  transition: opacity .35s ease-out;
+}
+
+.fadeOpacity-enter, .fadeOpacity-leave-active {
+  opacity: 0;
+}
+</style>
+```
+
+
+You can see how we could build on these further and create more and more streamlined CSS animations per page.
