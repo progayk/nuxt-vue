@@ -255,3 +255,51 @@ export default {
   }
 }
 ```
+
+## Navigation
+
+In that last demo you might have noticed we had a common navigation across all of the pages what we routed. In order to create this, we can go into the `layouts` directory, and we'll see a file called `default.vue`. This directory will house the base layouts for all of our pages, "default".
+
+```html
+<template>
+  <div>
+    <nuxt/>
+  </div>
+</template>
+```
+
+That special `<nuxt/>` tag will be where our `.vue` pages files will be inserted, so in order to create a navigation, we could insert a navigation component like this:
+
+```html
+<template>
+  <div>
+    <img class="moon" src="~assets/FullMoon2010.png" />
+    <Navigation />
+    <nuxt/>
+  </div>
+</template>
+
+<script>
+import Navigation from '~components/Navigation.vue'
+
+export default {
+  components: {
+    Navigation
+  }
+}
+</script>
+```
+
+Everything is kept nice and organized between our global and local needs.
+
+```html
+<nav>
+  <div class="title">
+    <nuxt-link to="/rufina">Rufina</nuxt-link>
+    <nuxt-link to="/prata">Prata</nuxt-link>
+    <nuxt-link exact to="/">Playfair</nuxt-link>
+  </div>
+</nav>
+```
+
+You'll notice I'm using that `<nuxt-link>` tag again even though it's in another directory, and the routing will still work. But that last page has one extra attribute, the exact attribute: `<nuxt-link exact to="/">Playfair</nuxt-link>` This is because there are many routes that match just the `/` directory, all of them do, in fact. So if we specify exact, Nuxt will know that we only mean the index page in particular.

@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b153335e-c51f-436c-8b48-206db774a4be" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/ContactPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/ContactPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tutorial-story.md" beforeDir="false" afterPath="$PROJECT_DIR$/../tutorial-story.md" afterDir="false" />
     </list>
@@ -24,8 +21,8 @@
       <file leaf-file-name="index.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pages/index.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="629">
+              <caret line="43" column="14" lean-forward="true" selection-start-line="43" selection-start-column="14" selection-end-line="43" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -51,8 +48,8 @@
       <file leaf-file-name="default.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/layouts/default.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+            <state relative-caret-position="272">
+              <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -87,6 +84,7 @@
         <option value="$PROJECT_DIR$/pages/ContactPage.vue" />
         <option value="$PROJECT_DIR$/../tutorial-story.md" />
         <option value="$PROJECT_DIR$/pages/TheProduct.vue" />
+        <option value="$PROJECT_DIR$/layouts/default.vue" />
         <option value="$PROJECT_DIR$/pages/index.vue" />
       </list>
     </option>
@@ -124,7 +122,7 @@
             <path>
               <item name="nuxt-vue-project" type="b2602c69:ProjectViewProjectNode" />
               <item name="nuxt-vue-project" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -186,26 +184,25 @@
       <option name="presentableId" value="Default" />
       <updated>1524578314467</updated>
       <workItem from="1524578315784" duration="9775000" />
-      <workItem from="1524588714071" duration="628000" />
+      <workItem from="1524588714071" duration="3010000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10403000" />
+    <option name="totallyTimeSpent" value="12785000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1366" y="27" width="2560" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="2" sideWeight="0.62486005" visible="true" weight="0.21178344" />
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
-      <window_info id="Version Control" order="3" sideWeight="0.37513998" side_tool="true" visible="true" weight="0.21178344" />
-      <window_info anchor="right" id="Run" order="3" sideWeight="0.49832028" visible="true" weight="0.25477707" />
-      <window_info id="npm" order="0" sideWeight="0.37513998" side_tool="true" weight="0.21178344" />
+      <window_info id="Version Control" order="3" sideWeight="0.37513998" side_tool="true" weight="0.21178344" />
+      <window_info active="true" anchor="right" id="Run" order="3" sideWeight="0.49832028" visible="true" weight="0.25477707" />
+      <window_info id="npm" order="0" sideWeight="0.37513998" side_tool="true" visible="true" weight="0.21178344" />
       <window_info id="Structure" order="4" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="right" id="Terminal" order="4" sideWeight="0.5016797" side_tool="true" visible="true" weight="0.25477707" />
+      <window_info anchor="right" id="Terminal" order="4" sideWeight="0.5016797" side_tool="true" visible="true" weight="0.25477707" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -340,13 +337,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/layouts/default.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../tutorial-story.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
@@ -371,10 +361,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/layouts/default.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pages/index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="629">
+          <caret line="43" column="14" lean-forward="true" selection-start-line="43" selection-start-column="14" selection-end-line="43" selection-end-column="14" />
         </state>
       </provider>
     </entry>
