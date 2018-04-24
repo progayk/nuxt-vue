@@ -6,6 +6,40 @@
   </div>
 </template>
 
+<script>
+import { TweenMax, Back } from 'gsap'
+
+export default {
+  transition: {
+    mode: 'out-in',
+    css: false,
+    beforeEnter (el) {
+      TweenMax.set(el, {
+        transformPerspective: 600,
+        perspective: 300,
+        transformStyle: 'preserve-3d'
+      })
+    },
+    enter (el, done) {
+      TweenMax.to(el, 1, {
+        rotationY: 360,
+        transformOrigin: '50% 50%',
+        ease: Back.easeOut
+      })
+      done()
+    },
+    // leave (el, done) {
+    //   TweenMax.to(el, 1, {
+    //     rotationY: 0,
+    //     transformOrigin: '50% 50%',
+    //     ease: Back.easeIn
+    //   })
+    //   done()
+    // }
+  }
+}
+</script>
+
 <style>
   html, body {
     font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
@@ -23,33 +57,5 @@
     width: 100vw;
     height: 100vh;
     background: #444;
-  }
-  /*these properties is assigned to elements automatically by VueJs*/
-  .page-enter-active {
-    animation: acrossIn .45s ease-out both;
-  }
-  .page-leave-active {
-    animation: acrossOut .65s ease-in both;
-  }
-  /*.page-enter {*/
-    /*opacity: 0;*/
-    /*transform-origin: 50% 50%;*/
-  /*}*/
-  @keyframes acrossIn {
-    0% {
-      transform: translate3d(-100%, 0, 0);
-    }
-    100% {
-      transform: translate3d(0, 0, 0);
-    }
-  }
-
-  @keyframes acrossOut {
-    0% {
-      transform: translate3d(0, 0, 0);
-    }
-    100% {
-      transform: translate3d(100%, 0, 0);
-    }
   }
 </style>

@@ -152,13 +152,14 @@ Right now we're using a CSS Transition. This only gives us the ability to design
 ```
 Let's also add a little bit of special styling to the product page so we can see the difference between these two pages:
 
-`<style scoped>` 
-```css
+
+```html
+<style scoped> 
   .container {
     background: #222;
   }
+  </style>
 ```
-`</style>`
 
 Now, let's say we have a page with a totally different interaction. For this page, the movement up and down was too much, we just want a simple fade. For this case, we'd need to rename our transition hook to separate it out.
 
@@ -191,3 +192,66 @@ export default {
 
 
 You can see how we could build on these further and create more and more streamlined CSS animations per page.
+
+## Javascript Hooks
+
+Vue's `<transition>` component offers some hooks to use JavaScript animation in place of CSS as well. They are as follows, and each hook is optional. The `:css="false"` binding lets Vue know we're going to use JS for this animation:
+
+```html
+<transition 
+  @before-enter="beforeEnter"
+  @enter="enter"
+  @after-enter="afterEnter"
+  @enter-cancelled="enterCancelled"
+
+  @before-Leave="beforeLeave"
+  @leave="leave"
+  @after-leave="afterLeave"
+  @leave-cancelled="leaveCancelled"
+  :css="false">
+ 
+ </transition>
+
+```
+
+The other thing we have available to us are transition modes. I'm a big fan of these, as you can state that one animation will wait for the other animation to finish transitioning out before transitioning in. The transition mode we will work with will be called out-in.
+
+We can do something really wild with JavaScript and the transition mode, again, we're going a little nuts here for the purposes of demo, we would usually do something much more subtle:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8t1PdiziI_U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+In order to do something like this, I've run yarn add gsap because I'm using GreenSock for this animation. In my `index.vue` page, I can remove the existing CSS animation and add this into the `<script>` tags:
+
+```javascript
+import { TweenMax, Back } from 'gsap'
+
+export default {
+  transition: {
+    mode: 'out-in',
+    css: false,
+    beforeEnter (el) {
+      TweenMax.set(el, {
+        transformPerspective: 600,
+        perspective: 300,
+        transformStyle: 'preserve-3d'
+      })
+    },
+    enter (el, done) {
+      TweenMax.to(el, 1, {
+        rotationY: 360,
+        transformOrigin: '50% 50%',
+        ease: Back.easeOut
+      })
+      done()
+    },
+    leave (el, done) {
+      TweenMax.to(el, 1, {
+        rotationY: 0,
+        transformOrigin: '50% 50%',
+        ease: Back.easeIn
+      })
+      done()
+    }
+  }
+}
+```

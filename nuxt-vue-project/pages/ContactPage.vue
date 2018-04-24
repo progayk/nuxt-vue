@@ -14,7 +14,7 @@
 
 <style scoped>
   .fadeOpacity-enter-active, .fadeOpacity-leave-active {
-    transition: opacity 2s ease-out;
+    transition: opacity .35s ease-out;
   }
 
   .fadeOpacity-enter, .fadeOpacity-leave-active {
